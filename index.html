@@ -1,0 +1,299 @@
+<html><head><base href="https://comparateurbonus.com/wp-content/uploads/2022/06/unibet-tv-1-768x198.webp%20logo%20du%20site">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sites de Streaming Sportif Gratuit - Avec Logo Unibet TV</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+  }
+  .logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+  }
+  .link-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .link-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .sport-link {
+    flex-grow: 1;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  .sport-link:hover {
+    background-color: #2980b9;
+  }
+  .edit-btn, .save-btn, .delete-btn {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .edit-btn {
+    background-color: #f39c12;
+    color: #fff;
+  }
+  .save-btn {
+    background-color: #27ae60;
+    color: #fff;
+  }
+  .delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  .edit-btn:hover, .save-btn:hover, .delete-btn:hover {
+    opacity: 0.8;
+  }
+  .warning {
+    font-size: 0.9em;
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fadbd8;
+    border-radius: 5px;
+  }
+  .add-link-form {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .add-link-form input, .add-link-form select {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .add-link-form button {
+    padding: 10px 15px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .ease-rating {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .star {
+    color: #f1c40f;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  .sort-options {
+    margin-bottom: 15px;
+    text-align: right;
+  }
+  .sort-btn {
+    background-color: #34495e;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .sort-btn:hover {
+    background-color: #2c3e50;
+  }
+  #saveStatus {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    color: #27ae60;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <img src="unibet-tv-1-768x198.webp" alt="Logo Unibet TV" class="logo" width="768" height="198">
+    <h1>Sites de Streaming Sportif Gratuit</h1>
+    <div class="sort-options">
+      <button id="sortByRating" class="sort-btn">Classer par Note</button>
+    </div>
+    <ul id="linkList" class="link-list">
+      <!-- Les liens seront ajoutés ici dynamiquement -->
+    </ul>
+    <form id="addLinkForm" class="add-link-form">
+      <input type="text" id="newLinkName" placeholder="Nom du site" required>
+      <input type="url" id="newLinkUrl" placeholder="URL du site" required>
+      <select id="newLinkEase" required>
+        <option value="">Indice de facilité</option>
+        <option value="0">0 - Très difficile</option>
+        <option value="1">1 - Difficile</option>
+        <option value="2">2 - Moyen</option>
+        <option value="3">3 - Facile</option>
+        <option value="4">4 - Très facile</option>
+        <option value="5">5 - Extrêmement facile</option>
+      </select>
+      <button type="submit">Ajouter un lien</button>
+    </form>
+    <div id="saveStatus"></div>
+    <p class="warning">
+      Attention : Les liens fournis mènent à des sites de streaming sportif gratuit. Veuillez noter que l'utilisation de ces services peut être illégale dans certains pays ou violer les conditions d'utilisation de certains fournisseurs de contenu. Utilisez ces liens à vos propres risques et considérez toujours des options légales et payantes pour soutenir vos sports et équipes préférés.
+    </p>
+  </div>
+
+  <script>
+    let links = [];
+
+    function loadLinks() {
+      const savedLinks = localStorage.getItem('sportStreamingLinks');
+      if (savedLinks) {
+        links = JSON.parse(savedLinks);
+      } else {
+        links = [
+          { name: "LiveSoccerTV", url: "https://www.livesoccertv.com/", ease: 4 },
+          { name: "Stream2Watch", url: "https://www.stream2watch.sx/", ease: 3 },
+          { name: "StreamEast", url: "https://www.streameast.live/", ease: 4 },
+          { name: "SportSurge", url: "https://sportsurge.net/", ease: 3 },
+          { name: "VIPBox", url: "https://www.vipbox.lc/", ease: 3 },
+          { name: "CricFree", url: "https://cricfree.sc/", ease: 4 },
+          { name: "FirstRowSports", url: "https://firstsrowsports.tv/", ease: 3 },
+          { name: "LiveTV", url: "https://livetv.sx/", ease: 4 },
+          { name: "SportLemon", url: "https://www.sportlemon.com/", ease: 3 },
+          { name: "WiziWig", url: "https://wiziwig.tv/", ease: 2 }
+        ];
+      }
+      renderLinks();
+    }
+
+    function saveLinks() {
+      localStorage.setItem('sportStreamingLinks', JSON.stringify(links));
+      showSaveStatus();
+    }
+
+    function showSaveStatus() {
+      const saveStatus = document.getElementById('saveStatus');
+      saveStatus.textContent = 'Sauvegardé automatiquement';
+      setTimeout(() => {
+        saveStatus.textContent = '';
+      }, 2000);
+    }
+
+    function renderLinks() {
+      const linkList = document.getElementById('linkList');
+      linkList.innerHTML = '';
+      links.forEach((link, index) => {
+        const li = document.createElement('li');
+        li.className = 'link-item';
+        li.innerHTML = `
+          <a href="${link.url}" class="sport-link" target="_blank">${link.name}</a>
+          <div class="ease-rating">
+            ${renderStars(link.ease)}
+          </div>
+          <button class="edit-btn" onclick="editLink(${index})">Éditer</button>
+          <button class="delete-btn" onclick="deleteLink(${index})">Supprimer</button>
+        `;
+        linkList.appendChild(li);
+      });
+    }
+
+    function renderStars(ease) {
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        stars += `<span class="star" data-rating="${i + 1}">${i < ease ? '★' : '☆'}</span>`;
+      }
+      return stars;
+    }
+
+    function editLink(index) {
+      const linkItem = document.querySelectorAll('.link-item')[index];
+      const link = links[index];
+      linkItem.innerHTML = `
+        <input type="text" value="${link.name}" class="edit-name">
+        <input type="url" value="${link.url}" class="edit-url">
+        <select class="edit-ease">
+          ${[0,1,2,3,4,5].map(i => `<option value="${i}" ${link.ease === i ? 'selected' : ''}>${i}</option>`).join('')}
+        </select>
+        <button class="save-btn" onclick="saveLink(${index})">Sauvegarder</button>
+      `;
+    }
+
+    function saveLink(index) {
+      const linkItem = document.querySelectorAll('.link-item')[index];
+      const newName = linkItem.querySelector('.edit-name').value;
+      const newUrl = linkItem.querySelector('.edit-url').value;
+      const newEase = parseInt(linkItem.querySelector('.edit-ease').value);
+      links[index] = { name: newName, url: newUrl, ease: newEase };
+      renderLinks();
+      saveLinks();
+    }
+
+    function deleteLink(index) {
+      if (confirm('Êtes-vous sûr de vouloir supprimer ce lien ?')) {
+        links.splice(index, 1);
+        renderLinks();
+        saveLinks();
+      }
+    }
+
+    document.getElementById('addLinkForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newName = document.getElementById('newLinkName').value;
+      const newUrl = document.getElementById('newLinkUrl').value;
+      const newEase = parseInt(document.getElementById('newLinkEase').value);
+      links.push({ name: newName, url: newUrl, ease: newEase });
+      renderLinks();
+      saveLinks();
+      this.reset();
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('star')) {
+        const linkItem = e.target.closest('.link-item');
+        const index = Array.from(linkItem.parentNode.children).indexOf(linkItem);
+        const newRating = parseInt(e.target.dataset.rating);
+        links[index].ease = newRating;
+        renderLinks();
+        saveLinks();
+      }
+    });
+
+    document.getElementById('sortByRating').addEventListener('click', function() {
+      links.sort((a, b) => b.ease - a.ease);
+      renderLinks();
+      saveLinks();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadLinks();
+    });
+  </script>
+</body>
+</html>
